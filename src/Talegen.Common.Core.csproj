@@ -13,6 +13,7 @@
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>Initial release</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
+    <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
