@@ -30,7 +30,7 @@
                 int i = 0;
                 while (i < descriptionStringParts.Length)
                 {
-                    if (descriptionStringParts[i].Contains(".", StringComparison.InvariantCultureIgnoreCase))
+                    if (descriptionStringParts[i].Contains("."))
                     {
                         result = new Version(descriptionStringParts[i]);
                         break;

@@ -177,7 +177,7 @@
                 throw new ArgumentNullException(nameof(source));
             }
 
-            int index = source.IndexOf(characterToFind, StringComparison.InvariantCulture);
+            int index = source.IndexOf(characterToFind);
             return index > -1 ? (index > 0 ? source.Substring(0, index) : string.Empty) : source;
         }
 
@@ -196,7 +196,7 @@
                 throw new ArgumentNullException(nameof(source));
             }
 
-            int index = source.IndexOf(characterToFind, StringComparison.InvariantCulture) + 1;
+            int index = source.IndexOf(characterToFind) + 1;
             return index > 0 && index < source.Length ? source.Substring(index) : source;
         }
     }

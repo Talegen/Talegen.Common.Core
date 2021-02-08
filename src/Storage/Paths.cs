@@ -19,7 +19,7 @@
         public static string CleanPath(string folderPath, char[] invalidCharacters = null)
         {
             // Get an array of all invalid characters
-            invalidCharacters ??= Path.GetInvalidPathChars();
+            invalidCharacters = invalidCharacters ?? Path.GetInvalidPathChars();
 
             // Use value.ConvertToString() to account for empty or null values
             return new string(folderPath.ConvertToString().Where(x => !invalidCharacters.Contains(x)).ToArray());
@@ -59,7 +59,7 @@
 
             if (!string.IsNullOrWhiteSpace(result) && !result.EndsWith(separator, StringComparison.Ordinal))
             {
-                result = result + separator;
+                result += separator;
             }
 
             return result;
