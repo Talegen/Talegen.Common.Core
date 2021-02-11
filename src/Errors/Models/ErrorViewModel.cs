@@ -19,7 +19,7 @@ namespace Talegen.Common.Core.Errors.Models
         public bool ShowRequestId => !string.IsNullOrEmpty(RequestId);
 
         /// <summary>
-        /// Gets or sets a value indicating whether this <see cref="ErrorViewModel" /> is development.
+        /// Gets or sets a value indicating whether this <see cref="ErrorViewModel{TErrorModel}" /> hosted application is development.
         /// </summary>
         /// <value><c>true</c> if development; otherwise, <c>false</c>.</value>
         public bool Development { get; set; }

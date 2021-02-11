@@ -248,7 +248,7 @@ namespace Talegen.Common.Core.Storage
         /// This extension method is used to add a specified GUID to the file name.
         /// </summary>
         /// <param name="fileInfo">Contains the File Info for the file to add a GUID into the file name.</param>
-        /// <param name="componentGuid">Contains the GUID to add to the file name.</param>
+        /// <param name="guidValue">Contains the GUID to add to the file name.</param>
         /// <returns>Returns the a new file name containing the GUID value.</returns>
         public static string AddGuid(this FileInfo fileInfo, Guid guidValue)
         {

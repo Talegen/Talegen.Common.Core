@@ -42,11 +42,13 @@
         #region Public Constructors
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="IdentityErrorManager" /> class.
+        /// Initializes a new instance of the <see cref="ErrorManager" /> class.
         /// </summary>
-        /// <param name="logger">Contains an instance of the <see cref="ILoggerService" /> interface object.</param>
+        /// <param name="logger">Contains an instance of the <see cref="ILogger" /> interface object.</param>
         /// <param name="enableLogging">Contains a value indicating whether event logging is enabled by default.</param>
-        /// <param name="minimumEventLogLevel">Contains the minimum <see cref="EventLogLevels" /> that will be sent to the event log database.</param>
+        /// <param name="minimumEventLogLevel">Contains the minimum <see cref="LogLevel" /> that will be sent to the event log database.</param>
+        /// <param name="resourceManager">Contains an optional resource manager for resource retrieval.</param>
+        /// <param name="cultureInfo">Contains an optional culture info object for retrieving localized resource strings.</param>
         public ErrorManager(ILogger logger = null, bool enableLogging = false, LogLevel minimumEventLogLevel = LogLevel.Warning, ResourceManager resourceManager = null, CultureInfo cultureInfo = null)
         {
             this.messages = new List<IErrorMessage>();
