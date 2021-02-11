@@ -199,5 +199,54 @@
             int index = source.IndexOf(characterToFind) + 1;
             return index > 0 && index < source.Length ? source.Substring(index) : source;
         }
+
+        /// <summary>
+        /// Slugifies the specified source string into a URL compatible name string.
+        /// </summary>
+        /// <param name="source">The source string to turn into a slug.</param>
+        /// <param name="forceLowerCase">Contains a value indicating whether the slug characters are forced to lowercase.</param>
+        /// <param name="characterSwaps">An optional dictionary of character string swaps to make in cleanup. By default white space is replaced with - character.</param>
+        /// <returns>Returns the slugified string.</returns>
+        /// <remarks>This is very useful for converting a title or file name into a URL-ready route.</remarks>
+        public static string Slugify(this string source, bool forceLowerCase = false, Dictionary<string, string> characterSwaps = null)
+        {
+            if (characterSwaps == null || characterSwaps.Count == 0)
+            {
+                characterSwaps = new Dictionary<string, string>() { { " ", "-" } };
+            }
+
+            // collapse white space
+            string output = Regex.Replace(forceLowerCase ? source.ToLower() : source, @"\s+", " ");
+
+            // replace with character swaps. minimum white space to -
+            StringBuilder swapBuilder = new StringBuilder(output);
+
+            foreach (KeyValuePair<string, string> swap in characterSwaps)
+            {
+                swapBuilder.Replace(swap.Key, swap.Value);
+            }
+
+            output = swapBuilder.ToString();
+
+            // remove diacritics
+            string normalized = output.Normalize(NormalizationForm.FormD);
+            StringBuilder diaBuilder = new StringBuilder();
+
+            for (int i = 0; i < normalized.Length; i++)
+            {
+                UnicodeCategory unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(normalized[i]);
+                if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                {
+                    diaBuilder.Append(normalized[i]);
+                }
+            }
+
+            output = (diaBuilder.ToString().Normalize(NormalizationForm.FormC));
+
+            // remove denied characters
+            output = Regex.Replace(output, @"[^a-zA-Z0-9\-\._]", string.Empty);
+
+            return output;
+        }
     }
 }

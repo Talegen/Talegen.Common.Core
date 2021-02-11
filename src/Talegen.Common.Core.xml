@@ -1,0 +1,1642 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Talegen.Common.Core</name>
+    </assembly>
+    <members>
+        <member name="T:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute">
+            <summary>
+            This class allows for the specification of a resource string key to use for an enumeration description.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.localizedDescriptionKey">
+            <summary>
+            Contains the localized description key for the attribute.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.resourceManager">
+            <summary>
+            The resource manager.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.culture">
+            <summary>
+            The culture.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.#ctor(System.String,System.Resources.ResourceManager,System.Globalization.CultureInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute" /> class.
+            </summary>
+            <param name="localizedDescriptionKey">Contains the resource key name to load into the attribute description property.</param>
+            <param name="resourceManager">Contains an optional resource manager</param>
+        </member>
+        <member name="P:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.Description">
+            <summary>
+            Gets the description of the localized description from resource.
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.ErrorManager">
+            <summary>
+            This error logging management class will track errors but also log to the data repository event log.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorManager.logger">
+            <summary>
+            Contains an instance of a logger implementation.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorManager.messages">
+            <summary>
+            Contains a list of <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> objects.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorManager.resourceManager">
+            <summary>
+            The resource manager
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorManager.culture">
+            <summary>
+            The culture
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.#ctor(Microsoft.Extensions.Logging.ILogger,System.Boolean,Microsoft.Extensions.Logging.LogLevel,System.Resources.ResourceManager,System.Globalization.CultureInfo)">
+            <summary>
+            Initializes a new instance of the <see cref="!:IdentityErrorManager" /> class.
+            </summary>
+            <param name="logger">Contains an instance of the <see cref="!:ILoggerService" /> interface object.</param>
+            <param name="enableLogging">Contains a value indicating whether event logging is enabled by default.</param>
+            <param name="minimumEventLogLevel">Contains the minimum <see cref="!:EventLogLevels" /> that will be sent to the event log database.</param>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorManager.HasCriticalErrors">
+            <summary>
+            Gets a value indicating whether there are any critical error messages.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorManager.HasErrors">
+            <summary>
+            Gets a value indicating whether there are any error messages.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorManager.HasValidationErrors">
+            <summary>
+            Gets a value indicating whether there are any validation error messages.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorManager.HasForbiddenErrors">
+            <summary>
+            Gets a value indicating whether there are any forbidden error messages reported.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorManager.LogMessages">
+            <summary>
+            Gets or sets a value indicating whether any error messages are logged in real-time.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorManager.EventLoggingLevel">
+            <summary>
+            Gets or sets the minimum event level where event logging will occur.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorManager.Messages">
+            <summary>
+            Gets a list of error message objects.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CreateErrorMessage">
+            <summary>
+            This method is used to generate a new error message object.
+            </summary>
+            <returns>Returns an error message that implements IErrorMessage.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CreateErrorMessage(System.String,Talegen.Common.Core.Errors.ErrorType,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to create a new empty <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> object.
+            </summary>
+            <param name="message">Contains the error message text.</param>
+            <param name="type">Contains the error message type.</param>
+            <param name="category">Contains the error message category.</param>
+            <returns>Returns a new instance of the <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> object.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CreateErrorMessage(System.String,Talegen.Common.Core.Errors.ErrorType,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to create a new empty <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> object.
+            </summary>
+            <param name="message">Contains the error message text.</param>
+            <param name="type">Contains the error message type.</param>
+            <param name="stackTrace">Contains the stack trace text.</param>
+            <param name="category">Contains the error message category.</param>
+            <returns>Returns a new instance of the <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> object.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CreateValidationMessage(System.String,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method adds a validation error message.
+            </summary>
+            <param name="propertyName">Contains the property name error occurred.</param>
+            <param name="message">Contains the error message text.</param>
+            <param name="category">Contains the error message category.</param>
+            <returns>Returns a new error message.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalNotFound(System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 404 Not Found.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalNotFoundFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error with a suggested error code of 404 Not Found to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalForbidden(System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 403 Forbidden.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalForbiddenFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error with a suggested error code of 403 Forbidden to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.Fatal(System.Exception,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate and add a fatal error message to the messages list.
+            </summary>
+            <param name="ex">Contains the exception to add as a fatal error message.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.Fatal(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Exception)">
+            <summary>
+            This method is used to generate and add a fatal error message to the messages list.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="ex">Contains the exception to add as a fatal error message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.Critical(System.Exception,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list.
+            </summary>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.Critical(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Exception)">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalFormat(System.String,System.Exception,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.Validation(System.String,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate and add a validation error message to the messages list.
+            </summary>
+            <param name="propertyName">Contains the property name error occurred.</param>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.ValidationFormat(System.String,System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a validation error message to the messages list with a formatted message.
+            </summary>
+            <param name="propertyName">Contains the property name error occurred.</param>
+            <param name="format">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.Warning(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Exception)">
+            <summary>
+            This method is used to generate and add a warning error message to the messages list.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.WarningFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a warning error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.WarningFormat(System.String,System.Exception,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a warning error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.ErrorMessage">
+            <summary>
+            This class represents an error message.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorMessage.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Errors.ErrorMessage" /> class.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorMessage.#ctor(System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Errors.ErrorMessage" /> class.
+            </summary>
+            <param name="message">Contains the error message text.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorMessage.#ctor(System.String,Talegen.Common.Core.Errors.ErrorType,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Errors.ErrorMessage" /> class.
+            </summary>
+            <param name="message">Contains the error message text.</param>
+            <param name="type">Contains the error message type.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorMessage.#ctor(System.String,Talegen.Common.Core.Errors.ErrorType,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Errors.ErrorMessage" /> class.
+            </summary>
+            <param name="message">Contains the error message text.</param>
+            <param name="type">Contains the error message type.</param>
+            <param name="stackTrace">Contains the error message stack trace text.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorMessage.#ctor(System.String,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Errors.ErrorMessage" /> class.
+            </summary>
+            <param name="propertyName">Contains the related property name.</param>
+            <param name="message">Contains the error message text.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.ErrorType">
+            <summary>
+            Gets or sets the error message type.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.ErrorCategory">
+            <summary>
+            Gets or sets the error message category.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.Message">
+            <summary>
+            Gets or sets the error message text.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.StackTrace">
+            <summary>
+            Gets or sets the error message stack trace text.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.PropertyName">
+            <summary>
+            Gets or sets a related property name.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.SuggestedErrorCode">
+            <summary>
+            Gets or sets a suggested return error code to the client.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.EventDate">
+            <summary>
+            Gets or sets the date time when the error occurred.
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.EventType">
+            <summary>
+            Contains an enumerated list of event types.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.EventType.Debug">
+            <summary>
+            An event for debugging purposes only.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.EventType.Validation">
+            <summary>
+            A validation event.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.EventType.Warning">
+            <summary>
+            A warning event.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.EventType.Error">
+            <summary>
+            An error event that is recoverable.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.EventType.Critical">
+            <summary>
+            A critical event that is not recoverable.
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.IErrorManager">
+            <summary>
+            This interface represents an error message handling object.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorManager.Messages">
+            <summary>
+            Gets a list of error message objects.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorManager.HasErrors">
+            <summary>
+            Gets a value indicating whether there are any error messages.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorManager.HasCriticalErrors">
+            <summary>
+            Gets a value indicating whether there are any critical error messages.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorManager.HasValidationErrors">
+            <summary>
+            Gets a value indicating whether there are any validation error messages.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorManager.HasForbiddenErrors">
+            <summary>
+            Gets a value indicating whether there are any forbidden error messages reported.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorManager.LogMessages">
+            <summary>
+            Gets or sets a value indicating whether any error messages are logged in real-time.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CreateErrorMessage">
+            <summary>
+            This method is used to generate a new error message object.
+            </summary>
+            <returns>Returns an error message that implements IErrorMessage.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CreateErrorMessage(System.String,Talegen.Common.Core.Errors.ErrorType,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate a new error message object.
+            </summary>
+            <param name="message">Contains the error message text.</param>
+            <param name="type">Contains the error message type.</param>
+            <param name="category">Contains the error message category.</param>
+            <returns>Returns an error message that implements IErrorMessage.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CreateErrorMessage(System.String,Talegen.Common.Core.Errors.ErrorType,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to create a new empty <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> object.
+            </summary>
+            <param name="message">Contains the error message text.</param>
+            <param name="type">Contains the error message type.</param>
+            <param name="stackTrace">Contains the stack trace text.</param>
+            <param name="category">Contains the error message category.</param>
+            <returns>Returns a new instance of the <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> object.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CreateValidationMessage(System.String,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to create a property validation error message.
+            </summary>
+            <param name="propertyName">Contains the property name error occurred.</param>
+            <param name="message">Contains the error message text.</param>
+            <param name="category">Contains the error message category.</param>
+            <returns>Returns a new instance of the <see cref="T:Talegen.Common.Core.Errors.IErrorMessage" /> object.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalNotFound(System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 404 Not Found.
+            </summary>
+            <param name="message">Contains an optional message to apply to the critical error.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalNotFoundFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error with a suggested error code of 404 Not Found to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the message and any format related token values for inserting parameter values.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalForbidden(System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 403 Forbidden.
+            </summary>
+            <param name="message">Contains an optional message to apply to the critical error.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalForbiddenFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error with a suggested error code of 403 Forbidden to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the message and any format related token values for inserting parameter values.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.Fatal(System.Exception,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate and add a fatal error message to the messages list.
+            </summary>
+            <param name="ex">Contains the exception to add as a fatal error message.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.Fatal(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Exception)">
+            <summary>
+            This method is used to generate and add a fatal error message to the messages list.
+            </summary>
+            <param name="message">Contains the message to add.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="ex">Contains the exception to add as a fatal error message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.Critical(System.Exception,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list.
+            </summary>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.Critical(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Exception)">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list.
+            </summary>
+            <param name="message">Contains the message to add.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.Warning(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Exception)">
+            <summary>
+            This method is used to generate and add a warning error message to the messages list.
+            </summary>
+            <param name="message">Contains the message to add.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.Validation(System.String,System.String,Talegen.Common.Core.Errors.ErrorCategory)">
+            <summary>
+            This method is used to generate and add a validation error message to the messages list.
+            </summary>
+            <param name="propertyName">Contains the property name error occurred.</param>
+            <param name="message">Contains the message to add.</param>
+            <param name="category">Contains the error message category.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the message and any format related token values for inserting parameter values.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalFormat(System.String,System.Exception,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the message and any format related token values for inserting parameter values.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.WarningFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a warning error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the message and any format related token values for inserting parameter values.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.WarningFormat(System.String,System.Exception,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a warning error message to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the message and any format related token values for inserting parameter values.</param>
+            <param name="ex">Contains the exception to add as a critical error message.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.ValidationFormat(System.String,System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Object[])">
+            <summary>
+            This method is used to generate and add a validation error message to the messages list with a formatted message.
+            </summary>
+            <param name="propertyName">Contains the property name error occurred.</param>
+            <param name="format">Contains the message and any format related token values for inserting parameter values.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.ErrorType">
+            <summary>
+            Contains an enumerated list of error message types.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorType.Fatal">
+            <summary>
+            Errors that have unexpectedly ended the intended process.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorType.Critical">
+            <summary>
+            Errors that have expectedly ended the intended process.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorType.Warning">
+            <summary>
+            Errors that can be handled and allow a process to continue.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorType.Validation">
+            <summary>
+            Errors that occur before a process starts.
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.ErrorCategory">
+            <summary>
+            Contains an enumerated list of error message types.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorCategory.General">
+            <summary>
+            General errors not categorized.
+            </summary>
+            <remarks>All other errors that do not fall within the other categories.</remarks>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorCategory.Security">
+            <summary>
+            Security related errors.
+            </summary>
+            <remarks>Errors related to permissions would be good candidates for Application errors.</remarks>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorCategory.Application">
+            <summary>
+            Application related errors not security related.
+            </summary>
+            <remarks>Errors related to a process failing would be good candidates for Application errors.</remarks>
+        </member>
+        <member name="F:Talegen.Common.Core.Errors.ErrorCategory.System">
+            <summary>
+            System related errors that are not security related.
+            </summary>
+            <remarks>IO or database related issues would be good candidates for System errors.</remarks>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.IErrorMessage">
+            <summary>
+            Represents an error message to be displayed.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorMessage.ErrorType">
+            <summary>
+            Gets or sets the message error type.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorMessage.ErrorCategory">
+            <summary>
+            Gets or sets the message error type.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorMessage.Message">
+            <summary>
+            Gets or sets the error message.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorMessage.StackTrace">
+            <summary>
+            Gets the error stack trace text.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorMessage.PropertyName">
+            <summary>
+            Gets or sets the related property name.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorMessage.SuggestedErrorCode">
+            <summary>
+            Gets or sets a suggested error code.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.IErrorMessage.EventDate">
+            <summary>
+            Gets or sets the date time when the error occurred.
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Errors.Models.ErrorViewModel`1">
+            <summary>
+            This class implements a minimum view model for errors.
+            </summary>
+            <typeparam name="TErrorModel">The type of the error model.</typeparam>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.Models.ErrorViewModel`1.RequestId">
+            <summary>
+            Gets or sets the request identifier.
+            </summary>
+            <value>The request identifier.</value>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.Models.ErrorViewModel`1.ShowRequestId">
+            <summary>
+            Gets a value indicating whether [show request identifier].
+            </summary>
+            <value><c>true</c> if [show request identifier]; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.Models.ErrorViewModel`1.Development">
+            <summary>
+            Gets or sets a value indicating whether this <see cref="!:ErrorViewModel" /> is development.
+            </summary>
+            <value><c>true</c> if development; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="P:Talegen.Common.Core.Errors.Models.ErrorViewModel`1.Error">
+            <summary>
+            Gets or sets the error.
+            </summary>
+            <value>The error.</value>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.AsyncHelper">
+            <summary>
+            This class contains helper methods that allow a developer to run an asynchronous method from within a synchronous method.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.AsyncHelper.TaskFactory">
+            <summary>
+            Contains a new task factory.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.AsyncHelper.RunSync``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)">
+            <summary>
+            Executes and returns the value of the asynchronous method function specified.
+            </summary>
+            <typeparam name="TResult">Contains the type of the result to return.</typeparam>
+            <param name="func">Contains the function to execute.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns the result of the function.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.AsyncHelper.RunSync(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)">
+            <summary>
+            Executes the asynchronous method function specified.
+            </summary>
+            <param name="func">Contains the function to execute.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.CryptoExtensions">
+            <summary>
+            This class contains a number of extensions for encrypting and decrypting data using the AES cryptography algorithm.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.CryptoExtensions.BlockBitSize">
+            <summary>
+            Contains the block bit size for encryption
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.CryptoExtensions.KeyBitSize">
+            <summary>
+            Contains the key bit size
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.CryptoExtensions.SaltBitSize">
+            <summary>
+            Contains the salt bit size
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.CryptoExtensions.Iterations">
+            <summary>
+            Contains the number of iterations
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.CryptoExtensions.AlphanumericCharacters">
+            <summary>
+            Contains alpha-characters for password generation.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.RandomAlphaString(System.Int32,System.Collections.Generic.IEnumerable{System.Char})">
+            <summary>
+            This method is used to generate a random alpha-numeric string.
+            </summary>
+            <param name="length">Contains the length of the string.</param>
+            <param name="characterSet">Optionally, contains the set of characters used for character selection.</param>
+            <returns>Returns a string containing random characters.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.RandomString(System.Int32)">
+            <summary>
+            This method is used to generate random byte data encoded as a hex string.
+            </summary>
+            <param name="length">Contains the length of the random bytes.</param>
+            <returns>Returns an hex-encoded string of random characters of the specified length.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.RandomBytes(System.Int32)">
+            <summary>
+            This method is used to generate random byte data.
+            </summary>
+            <param name="length">Contains the length of the random bytes.</param>
+            <returns>Returns an array of random bytes of the specified length.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.Encrypt(System.String,System.String)">
+            <summary>
+            This method is used to encrypt the specified plain data.
+            </summary>
+            <param name="plainData">Contains the plain text data to encrypt.</param>
+            <param name="password">Contains the password.</param>
+            <returns>Returns a string containing the base-64 encoded encrypted data stream.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.Encrypt(System.Byte[],System.String)">
+            <summary>
+            This method is used to encrypt the specified plain data.
+            </summary>
+            <param name="plainData">Contains the plain text data to encrypt.</param>
+            <param name="password">Contains the password.</param>
+            <returns>Returns a byte array containing the encrypted data stream.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.Encrypt(System.Byte[],System.Byte[],System.Byte[],System.Byte[])">
+            <summary>
+            This method is used to encrypt the specified plain data
+            </summary>
+            <param name="plainData">Contains the plain text data to encrypt.</param>
+            <param name="cryptKey">Contains the crypto key data.</param>
+            <param name="authKey">Contains the authorize key data.</param>
+            <param name="nonSecretPayload">Contains additional salt non-secret payload data.</param>
+            <returns>Returns a byte array containing the encrypted data stream.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.Decrypt(System.String,System.String,System.Boolean)">
+            <summary>
+            This method is used to decrypt the specified encrypted data
+            </summary>
+            <param name="cryptoData">Contains the encrypted data to decrypt.</param>
+            <param name="password">Contains the password.</param>
+            <param name="base64Encoded">Contains a value indicating whether the encrypted string is base-64 encoded and should be decoded first.</param>
+            <returns>Returns the original decrypted text.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.Decrypt(System.Byte[],System.String)">
+            <summary>
+            This method is used to decrypt the specified encrypted data.
+            </summary>
+            <param name="cryptoData">Contains the encrypted data to decrypt.</param>
+            <param name="password">Contains the password.</param>
+            <returns>Returns the original decrypted text.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.CryptoExtensions.Decrypt(System.Byte[],System.Byte[],System.Byte[],System.Int32)">
+            <summary>
+            This method is used to decrypt the specified encrypted data.
+            </summary>
+            <param name="cryptoData">Contains the encrypted data to decrypt.</param>
+            <param name="cryptKey">Contains the crypto key data.</param>
+            <param name="authKey">Contains the authorize key data.</param>
+            <param name="nonSecretPayloadLength">Contains the length of the additional payload used in encryption.</param>
+            <returns>Returns the original decrypted text.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.ExceptionExtensions">
+            <summary>
+            This class contains Extension methods for exceptions.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.ExceptionExtensions.RecurseMessages(System.Exception,System.Int32)">
+            <summary>
+            This method is used to recurse through an exception's inner exceptions and return a combined message string containing all error messages.
+            </summary>
+            <param name="ex">Contains the exception object to recurse.</param>
+            <param name="recursionLevel">Contains the indentation level of the recursive messages.</param>
+            <returns>Returns a string containing all related exception messages.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.HashMethod">
+            <summary>
+            Contains an enumerated list of hash methods available.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.HashMethod.SHA256">
+            <summary>
+            SHA2-256 bit (32 byte) hashing algorithm.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.HashMethod.SHA512">
+            <summary>
+            SHA2-512 (64 byte) bit hashing algorithm.
+            </summary>
+            <remarks>The best hashing algorithm for security purposes.</remarks>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.HashExtensions">
+            <summary>
+            This class contains extension methods for cryptographic hashing of string data.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.HashExtensions.ToHashString(System.String,Talegen.Common.Core.Extensions.HashMethod,System.Int32)">
+            <summary>
+            This method is used to hash binary data using the specified hashing algorithm.
+            </summary>
+            <param name="textData">Contains the text to hash.</param>
+            <param name="hashMethod">Contains the hashing algorithm to use to hash the specified data.</param>
+            <param name="maximumLength">Contains the maximum number of hash bytes to return in the hash result.</param>
+            <returns>Returns a hex-encoded string representing the bytes of the hash result.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.HashExtensions.UnicodeToHashString(System.String,Talegen.Common.Core.Extensions.HashMethod,System.Int32)">
+            <summary>
+            This method is used to hash XML data using the specified hashing algorithm.
+            </summary>
+            <param name="textData">Contains the text to hash.</param>
+            <param name="hashMethod">Contains the hashing algorithm to use to hash the specified data.</param>
+            <param name="maximumLength">Contains the maximum number of hash bytes to return in the hash result.</param>
+            <returns>Returns a hex-encoded string representing the bytes of the hash result.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.HashExtensions.ToHashString(System.Byte[],Talegen.Common.Core.Extensions.HashMethod,System.Int32)">
+            <summary>
+            This method is used to hash binary data using the specified hashing algorithm.
+            </summary>
+            <param name="binaryData">Contains the binary data array to hash.</param>
+            <param name="hashMethod">Contains the hashing algorithm to use to hash the specified data.</param>
+            <param name="maximumLength">Contains the maximum number of hash bytes to return in the hash result.</param>
+            <returns>Returns a hex-encoded string representing the bytes of the hash result.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.HashExtensions.ToHashString(System.IO.FileInfo,Talegen.Common.Core.Extensions.HashMethod)">
+            <summary>
+            This method is used to hash binary data using the specified hashing algorithm.
+            </summary>
+            <param name="fileInfo">Contains a <c>FileInfo</c> containing the file to hash.</param>
+            <param name="hashMethod">Contains the hashing algorithm to use to hash the specified data.</param>
+            <returns>Returns a hex-encoded string representing the bytes of the file hash result.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.HashExtensions.ToHash(System.String,Talegen.Common.Core.Extensions.HashMethod,System.Int32)">
+            <summary>
+            This method is used to hash binary data using the specified hashing algorithm.
+            </summary>
+            <param name="textData">Contains the text to hash.</param>
+            <param name="hashMethod">Contains the hashing algorithm to use to hash the specified data.</param>
+            <param name="maximumLength">Contains the maximum number of hash bytes to return in the hash result.</param>
+            <returns>Returns a byte array of hashed bytes</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.HashExtensions.ToHash(System.Byte[],Talegen.Common.Core.Extensions.HashMethod,System.Int32)">
+            <summary>
+            This method is used to hash binary data using the specified hashing algorithm.
+            </summary>
+            <param name="binaryData">Contains the binary data array to hash.</param>
+            <param name="hashMethod">Contains the hashing algorithm to use to hash the specified data.</param>
+            <param name="maximumLength">Contains the maximum number of hash bytes to return in the hash result.</param>
+            <returns>Returns a byte array of hashed bytes</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.HashExtensions.ToHexString(System.Collections.Generic.IEnumerable{System.Byte})">
+            <summary>
+            Converts a binary byte array to a hex encoded string.
+            </summary>
+            <param name="bytesIn">byte array of binary data.</param>
+            <returns>Returns a hex encoded string.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.LocaleExtensions">
+            <summary>
+            This class contains extensions related to localization code and strings.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.LocaleExtensions.DefaultLanguageCode">
+            <summary>
+            The default language code
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.LocaleExtensions.ToNeutralCultureCode(System.String)">
+            <summary>
+            This method is used to convert a specified character code and return the two-letter language name in return.
+            </summary>
+            <param name="characterCode">Contains the character code to find a two-letter language code for.</param>
+            <returns>Returns the two-letter ISO language code for the specified character code.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.LocaleExtensions.ToLocalCultureCode(System.String)">
+            <summary>
+            This method is used to convert a specified character code and return the four-letter language name in return.
+            </summary>
+            <param name="characterCode">Contains the character code to find a four-letter language code for.</param>
+            <returns>Returns the four-letter ISO language code for the specified character code.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.LocaleExtensions.ToCultureInfo(System.String)">
+            <summary>
+            This method is used to return the culture info object for the specified locale code.
+            </summary>
+            <param name="localeCode">Contains the locale code to convert.</param>
+            <returns>Returns a Culture Info object.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.SortDirection">
+            <summary>
+            Contains an enumerated list of sort directions for a query.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.SortDirection.Ascending">
+            <summary>
+            Ascending
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Extensions.SortDirection.Descending">
+            <summary>
+            Descending
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.QueryExtensions">
+            <summary>
+            This class contains query extensions used for enhancing LINQ queries.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.QueryExtensions.ToSortDirection(System.String)">
+            <summary>
+            This method converts a string value into a sort direction.
+            </summary>
+            <param name="value">Contains the string value to convert.</param>
+            <returns>Returns the converted <see cref="T:Talegen.Common.Core.Extensions.SortDirection" /> value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.QueryExtensions.OrderByName``1(System.Linq.IQueryable{``0},System.String,Talegen.Common.Core.Extensions.SortDirection)">
+            <summary>
+            This method is used to order an enumerable result by a property name stored in a string.
+            </summary>
+            <typeparam name="T">Contains the enumerable type to order.</typeparam>
+            <param name="query">Contains the query for which an order sort will be executed.</param>
+            <param name="propertyName">Contains the property name to order the entities by.</param>
+            <param name="direction">Contains the direction of the order.</param>
+            <returns>Returns an ordered query for the specified entities by property name.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.SerializeExtensions">
+            <summary>
+            This method is used to enhance objects and strings adding additional serialization and deserialization properties to any type.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.SerializeExtensions.Serialize``1(``0,System.String,System.Xml.XmlWriterSettings)">
+            <summary>
+            This method is used to serialize an object to an XML file.
+            </summary>
+            <typeparam name="T">Contains the object type to serialize.</typeparam>
+            <param name="value">Contains the object that is to be serialized.</param>
+            <param name="serializeFilePath">Contains the file path where the serialized content will be stored.</param>
+            <param name="xmlWriteSettings">Contains an instance of the XML writer settings object used to define settings for the serialized XML output.</param>
+            <exception cref="T:System.ArgumentNullException">Exception thrown if no file path is specified</exception>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.SerializeExtensions.Serialize``1(``0)">
+            <summary>
+            This method is used to serialize an object to an UTF-8 encoded file.
+            </summary>
+            <typeparam name="T">Contains the object type to serialize.</typeparam>
+            <param name="value">Contains the object that is to be serialized.</param>
+            <returns>Returns the XML content of the serialized object.</returns>
+            <exception cref="T:System.ArgumentNullException">Exception thrown if no file path is specified.</exception>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.SerializeExtensions.Deserialize``1(System.IO.FileInfo)">
+            <summary>
+            This method is used to deserialize an object from an XML file.
+            </summary>
+            <typeparam name="T">Contains the object type to deserialize.</typeparam>
+            <param name="fileInfo">Contains an <see cref="T:System.IO.FileInfo" /> object representing the file to deserialize.</param>
+            <returns>Returns an object of the specified type <typeparamref name="T" />.</returns>
+            <exception cref="T:System.IO.FileNotFoundException">This exception is thrown if the file is not found.</exception>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.SerializeExtensions.Deserialize``1(System.String)">
+            <summary>
+            This method is used to deserialize an object from an XML string.
+            </summary>
+            <typeparam name="T">Contains the object type to deserialize.</typeparam>
+            <param name="value">Contains the string value to deserialize.</param>
+            <returns>Returns an object of the specified type <typeparamref name="T" />.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.StringExtensions">
+            <summary>
+            This class contains methods to aid in manipulating strings.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.WriteString(System.IO.Stream,System.String,System.Text.Encoding)">
+            <summary>
+            This extension method is used to write a string to the specified stream/
+            </summary>
+            <param name="stream">Contains the stream that will be written to.</param>
+            <param name="content">Contains the string content to write to the stream.</param>
+            <param name="encoder">Contains the optional encoder used to define the string encoding.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.ReadString(System.IO.Stream,System.Text.Encoding,System.Boolean,System.Int32)">
+            <summary>
+            This method is used to read and return a string of data from a specified stream.
+            </summary>
+            <param name="stream">Contains the stream to read string data from.</param>
+            <param name="encoder">Contains an optional encoder to use for reading the byte data.</param>
+            <param name="detectEncodingFromByteOrderMarks">Contains an optional value indicating that byte order marks should be used to determine encoding.</param>
+            <param name="bufferSize">Contains an optional byte buffer read size.</param>
+            <returns>Returns stream data as a string.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.ToByteArray(System.String,System.Text.Encoding)">
+            <summary>
+            This extension method is used to convert a string to an array of bytes using the specified optional encoder.
+            </summary>
+            <param name="content">Contains the content string to convert to bytes.</param>
+            <param name="encoder">Contains the optional encoder to use during the conversion. A default Unicode encoder is used if not specified.</param>
+            <returns>Returns the specified string as a byte array.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.IsBase64String(System.String)">
+            <summary>
+            This extension method is used to determine if a string contains Base-64 encoded text.
+            </summary>
+            <param name="content">Contains the content to analyze.</param>
+            <returns>Returns a value indicating whether the content string contains Base-64 encoded text.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.Base64Encode(System.Byte[])">
+            <summary>
+            This extension method is used to convert a byte array into Base-64 encoded string.
+            </summary>
+            <param name="content">Contains the byte array to convert to a Base-64 encoded string.</param>
+            <returns>Returns the Base-64 encoded string.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.Base64Decode(System.String)">
+            <summary>
+            This extension method is used to convert a Base-64 encoded string into a binary byte array.
+            </summary>
+            <param name="content">Contains the Base-64 encoded string to convert.</param>
+            <returns>Returns the decoded string content or the content if not a Base-64 string as a UTF8 byte array.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.Chop(System.String,System.Int32)">
+            <summary>
+            This extension method is used to split a large string into an enumerated list of smaller strings of the a length no larger than the specified
+            maximum length.
+            </summary>
+            <param name="text">Contains the text that is to be split into an enumerable list of strings of the specified maximum length.</param>
+            <param name="maxLength">Contains the maximum size of each individual split string value returned.</param>
+            <returns>Contains an enumerated list of strings that have been split apart from the source string.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"><c>maxLength</c> must be greater than 0.</exception>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.Match(System.String,System.String)">
+            <summary>
+            This method is used to determine if a specified string matches a regular expression.
+            </summary>
+            <param name="text">Contains the text to match with the regular expression.</param>
+            <param name="regularExpression">Contains the regular expression text.</param>
+            <returns>Returns a value indicating whether the text successfully matches the regular expression.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.IsEmail(System.String)">
+            <summary>
+            This method is used to determine if a specified string contains a valid e-mail address.
+            </summary>
+            <param name="emailAddress">Contains the string to evaluate.</param>
+            <returns>Returns a value indicating whether the string contains a valid e-mail address.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.Before(System.String,System.Char)">
+            <summary>
+            This method is used to get a substring before a specified character is found within the string.
+            </summary>
+            <param name="source">Contains the source string to search within.</param>
+            <param name="characterToFind">Contains the character to find within the specified source string.</param>
+            <returns>
+            Returns all characters before the specified character within the source string. If the character is not found, the entire source string is returned.
+            If the character is the only character within the source string, an empty string is returned.
+            </returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.After(System.String,System.Char)">
+            <summary>
+            This method is used to get a substring after a specified character is found within the string.
+            </summary>
+            <param name="source">Contains the source string to search within.</param>
+            <param name="characterToFind">Contains the character to find within the specified source string.</param>
+            <returns>
+            Returns all characters after the specified character within a source string. If the character is not found, the entire source string is returned.
+            </returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.Slugify(System.String,System.Boolean,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Slugifies the specified source string into a URL compatible name string.
+            </summary>
+            <param name="source">The source string to turn into a slug.</param>
+            <param name="forceLowerCase">Contains a value indicating whether the slug characters are forced to lowercase.</param>
+            <param name="characterSwaps">An optional dictionary of character string swaps to make in cleanup. By default white space is replaced with - character.</param>
+            <returns>Returns the slugified string.</returns>
+            <remarks>This is very useful for converting a title or file name into a URL-ready route.</remarks>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.TypeExtensions">
+            <summary>
+            This class contains a number of extension methods for conversion of data values.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToGuid(System.String)">
+            <summary>
+            This method is used to convert a string representation of a GUID into a Guid structure.
+            </summary>
+            <param name="value">Contains the string value containing a GUID value.</param>
+            <returns>Returns the parsed string as a Guid structure.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToUtcKindDate(System.DateTime)">
+            <summary>
+            This method is used to convert a potentially local date-time to a UTC kind date. This is used in scenarios where all dates are expected to be
+            handled as UTC instead of allowing localization to manipulate dates.
+            </summary>
+            <param name="value">Contains the potentially local date-time to convert to UTC kind.</param>
+            <returns>Returns a new date with the same values as the original date, only formatted as UTC localization.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToShortDateString(System.Nullable{System.DateTime})">
+            <summary>
+            This method is used to provide a short date conversion value for a null date time object. By default null date time will not offer this method, so
+            this extension method handles the necessary logic to provide this shorthand.
+            </summary>
+            <param name="value">Contains the null date time object to convert to a short date string.</param>
+            <returns>Returns a short date string if the null date time has a value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToPasswordHint(System.String,System.Char,System.Boolean)">
+            <summary>
+            This method is used to convert a password string to a password hint string.
+            </summary>
+            <param name="passwordText">Contains the password text to convert to a password hint text.</param>
+            <param name="passwordReplaceCharacter">Contains the character to use as the hidden password character.</param>
+            <param name="showBeginningCharacter">Contains a value indicating whether the first password character is shown.</param>
+            <returns>Returns a password hint value of the specified password string. E.g. "*******" or "P*******" for "Password".</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.Truncate(System.String,System.Int32)">
+            <summary>
+            Truncates a string to a maximum length.
+            </summary>
+            <param name="value">Contains the value to truncate.</param>
+            <param name="maximumLength">Contains the maximum number of bytes to truncate.</param>
+            <returns>Returns the truncated string.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToInt(System.Object,System.Int32)">
+            <summary>
+            Converts an object to an integer value returning default value on null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the object value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <returns>Returns the converted or default integer value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToInt(System.String,System.Int32)">
+            <summary>
+            Converts a string to an integer value returning default value for null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <returns>Returns the converted or default integer value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToLong(System.Object,System.Int64)">
+            <summary>
+            Converts an object to a long integer value returning default value on null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the object value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <returns>Returns the converted or default long integer value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToLong(System.String,System.Int64)">
+            <summary>
+            Converts a string to a long integer value returning default value for null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <returns>Returns the converted or default long integer value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToDecimal(System.String,System.Decimal)">
+            <summary>
+            Converts a string to an decimal value returning default value for null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <returns>Returns the converted or default decimal value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToDecimal(System.Object,System.Decimal)">
+            <summary>
+            Converts an object to an decimal value returning default value on null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the object value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <returns>Returns the converted or default decimal value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ConvertToString(System.Object,System.String)">
+            <summary>
+            Converts an object to a string value returning default value on null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the object value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <returns>Returns the converted or default string value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToDateTime(System.Object,System.Nullable{System.DateTime},System.IFormatProvider,System.Globalization.DateTimeStyles)">
+            <summary>
+            Converts an object to a DateTime value returning default value on null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the object value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <param name="dateFormatter">Contains the globalization formatter for converting a date.</param>
+            <param name="dateStyle">Contains the date style the string is conformed to.</param>
+            <returns>Returns the converted or default DateTime value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToDateTime(System.String,System.Nullable{System.DateTime},System.IFormatProvider,System.Globalization.DateTimeStyles)">
+            <summary>
+            Converts a string to an DateTime value returning default value for null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <param name="dateFormatter">Contains the globalization formatter for converting a date.</param>
+            <param name="dateStyle">Contains the date style the string is conformed to.</param>
+            <returns>Returns the converted or default DateTime value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToExactDateTime(System.Object,System.String,System.Nullable{System.DateTime},System.IFormatProvider)">
+            <summary>
+            Converts a string matching an exact string format to a DateTime value returning default value for null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the object value to convert.</param>
+            <param name="stringFormat">Contains the exact date format that the value to convert contains.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <param name="dateFormatter">Contains the globalization formatter for converting a date.</param>
+            <returns>Returns the converted or default DateTime value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToExactDateTime(System.String,System.String,System.Nullable{System.DateTime},System.IFormatProvider)">
+            <summary>
+            Converts a string matching an exact string format to a DateTime value returning default value for null or <see cref="T:System.DBNull" /> types.
+            </summary>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="stringFormat">Contains the exact date format that the value to convert contains.</param>
+            <param name="defaultValue">Contains the default value to return if value cannot be converted.</param>
+            <param name="dateFormatter">Contains the globalization formatter for converting a date.</param>
+            <returns>Returns the converted or default DateTime value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.Object,System.Boolean)">
+            <summary>
+            This method is used to convert a string value to an enumerated value of a specified type.
+            </summary>
+            <typeparam name="T">Contains the enumeration type.</typeparam>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="ignoreCase"><c>true</c> to perform a case-insensitive search; otherwise <c>false</c>.</param>
+            <returns>Returns the enumerated value on success.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.String,System.Boolean)">
+            <summary>
+            This method is used to convert a string value to an enumerated value of a specified type.
+            </summary>
+            <typeparam name="T">Contains the enumeration type.</typeparam>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="ignoreCase"><c>true</c> to perform a case-insensitive search; otherwise <c>false</c>.</param>
+            <returns>Returns the enumerated value on success.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.Char,System.Collections.Generic.Dictionary{System.Char,System.String})">
+            <summary>
+            This method is used to convert a character value into a string representing an enumeration value and then converting to a matching enumeration list selection.
+            </summary>
+            <typeparam name="T">Contains the enumeration type.</typeparam>
+            <param name="value">Contains the string value to convert.</param>
+            <param name="castDictionary">Contains a character string casting map for a character value and enumeration name value.</param>
+            <returns>Returns the enumerated value on success.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToBoolean(System.Object,System.Boolean)">
+            <summary>
+            This method is used to convert an object value to a boolean.
+            </summary>
+            <param name="value">Contains the value to convert.</param>
+            <param name="defaultValue">Contains a default value to return when the value is invalid.</param>
+            <returns>Returns the converted value or default value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToBoolean(System.String,System.Boolean)">
+            <summary>
+            This method is used to convert a string value to a boolean.
+            </summary>
+            <param name="value">Contains the value to convert.</param>
+            <param name="defaultValue">Contains a default value to return when the value is invalid.</param>
+            <returns>Returns the converted value or default value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToDescription``1(``0,System.Globalization.CultureInfo)">
+            <summary>
+            This method is used to find a <see cref="T:System.ComponentModel.DescriptionAttribute" /> value specified on an enumeration value.
+            </summary>
+            <typeparam name="T">Contains the type of enumeration to retrieve the description value for.</typeparam>
+            <param name="enumerationValue">Contains the enumeration to search for a description.</param>
+            <param name="resourceCulture">
+            Contains an optional culture info object used to override the current threads culture info. Typically used when an enumerated description must be
+            rendered in a different language than the user's profile preference.
+            </param>
+            <returns>Returns the enumeration description or the default ToString value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToCharMapDictionary``1">
+            <summary>
+            This method is used to create a dictionary of description to enumeration value mappings for reverse enumeration value lookup.
+            </summary>
+            <typeparam name="T">Contains the type of enumeration to retrieve the description mapping for.</typeparam>
+            <returns>Returns the enumeration character to enumeration mapping dictionary.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ZeroToNull(System.Nullable{System.Int64})">
+            <summary>
+            This extension method is used to convert a zero value to null.
+            </summary>
+            <param name="value">Contains the value to evaluate.</param>
+            <returns>Returns null if the value is zero.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ZeroToNull(System.Nullable{System.Int32})">
+            <summary>
+            This extension method is used to convert a zero value to null.
+            </summary>
+            <param name="value">Contains the value to evaluate.</param>
+            <returns>Returns null if the value is zero.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ZeroToNull(System.Int64)">
+            <summary>
+            This extension method is used to convert a zero value to null.
+            </summary>
+            <param name="value">Contains the value to evaluate.</param>
+            <returns>Returns null if the value is zero.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ZeroToNull(System.Int32)">
+            <summary>
+            This extension method is used to convert a zero value to null.
+            </summary>
+            <param name="value">Contains the value to evaluate.</param>
+            <returns>Returns null if the value is zero.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.Utf8StringWriter">
+            <summary>
+            This class is used to override String Writer class.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Extensions.Utf8StringWriter.Encoding">
+            <summary>
+            This method is used to override the encoding to UTF8.
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.ArgumentMustBeGreaterThanZeroErrorFormat">
+            <summary>
+              Looks up a localized string similar to {0} must be greater than 0..
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.CryptoAuthKeyLengthErrorText">
+            <summary>
+              Looks up a localized string similar to Authentication key must be {0} bits in length..
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.CryptoKeyLengthErrorText">
+            <summary>
+              Looks up a localized string similar to Cryptography key must be {0} bits in length..
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.CryptoMustSpecifyCryptoTextToDecryptErrorText">
+            <summary>
+              Looks up a localized string similar to The content specified was not recognized as valid encrypted data..
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.CryptoMustSpecifyTextToEncryptErrorText">
+            <summary>
+              Looks up a localized string similar to No data specified for encryption..
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.DeserializeFileNotFoundErrorText">
+            <summary>
+              Looks up a localized string similar to The file specified was not found..
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.InvalidArgumentMustBeEnumerationText">
+            <summary>
+              Looks up a localized string similar to Invalid argument. Argument must be an enumeration..
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Properties.Resources.InvalidFileArgumentErrorText">
+            <summary>
+              Looks up a localized string similar to A valid file path must be specified..
+            </summary>
+        </member>
+        <member name="T:Talegen.Common.Core.Storage.Files">
+            <summary>
+            This class provides file related helper methods for the developer.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Storage.Files.ImageLookupMap">
+            <summary>
+            Contains a dictionary of known image content types.
+            </summary>
+        </member>
+        <member name="F:Talegen.Common.Core.Storage.Files.LookupMap">
+            <summary>
+            Contains a pre-populated dictionary of file extensions to MIME content types mapping.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.AddGuid(System.IO.FileInfo,System.Guid)">
+            <summary>
+            This extension method is used to add a specified GUID to the file name.
+            </summary>
+            <param name="fileInfo">Contains the File Info for the file to add a GUID into the file name.</param>
+            <param name="componentGuid">Contains the GUID to add to the file name.</param>
+            <returns>Returns the a new file name containing the GUID value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.FindFileErrorLines(System.String,System.String)">
+            <summary>
+            This extension method is used to read error lines from a text file.
+            </summary>
+            <param name="filePathName">Contains the file and path name of the text file to read.</param>
+            <param name="prefix">Contains the text of the line prefix that will identify the line as an error.</param>
+            <returns>Returns a list of errors from the text file.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.CleanFileName(System.String,System.Boolean,System.String,System.Collections.Generic.List{System.Char})">
+            <summary>
+            This method is used to clean up invalid characters from a file name.
+            </summary>
+            <param name="fileName">Contains the file name string to parse.</param>
+            <param name="convertSpaceCharacters">Contains a value indicating whether space characters are converted to the specified character string.</param>
+            <param name="convertSpaceTo">Contains an optional character string that space characters shall be converted to.</param>
+            <param name="invalidCharacters">Contains an array of characters to removed from the specified file name.</param>
+            <returns>Returns the file name with the invalid characters removed.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.FindMimeContentTypeByExtension(System.String,System.String)">
+            <summary>
+            This method is used to return a MIME content type string for a specified file by using the file extension as a dictionary lookup for the appropriate type.
+            </summary>
+            <param name="fileName">Contains the file name to retrieve a MIME type for.</param>
+            <param name="defaultMimeType">Contains the default MIME type to return if a match is not found.</param>
+            <returns>Returns the MIME content type string for the specified file extension.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.IsImageContent(System.String)">
+            <summary>
+            This method is used to determine if the MIME content type specified matches that for a known image type.
+            </summary>
+            <param name="contentType">Contains the content type to lookup.</param>
+            <returns>Returns a value indicating whether the content type is a known image type.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.IsImageFile(System.String)">
+            <summary>
+            This method is used to determine if the file name is a supported image.
+            </summary>
+            <param name="fileName">Contains the file name to determine if it is a supported browser image.</param>
+            <returns>Returns a value indicating whether the file name is an image.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.IsBrowserImage(System.String)">
+            <summary>
+            This method is used to determine if a file name contains an extension recognized as a supported browser image type.
+            </summary>
+            <param name="fileName">Contains the file name to analyze.</param>
+            <returns>Returns a value indicating whether the file name is recognized as a supported browser image.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.CanCreateThumbnail(System.String)">
+            <summary>
+            This method is used to determine if the image file name contains an extension that is able to be rendered as a thumbnail within the application.
+            </summary>
+            <param name="fileName">Contains the file name of the image in question.</param>
+            <returns>Returns true if the image can be rendered as a thumbnail within the application.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.FormatFileName(System.String)">
+            <summary>
+            This method is used to remove invalid file system characters from a file name.
+            </summary>
+            <param name="fileName">Contains the file name to parse.</param>
+            <returns>Returns a valid clean file name.</returns>
+            <remarks>Could probably just use regular expressions but this will suffice for now</remarks>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.OverwriteMove(System.String,System.String)">
+            <summary>
+            This method is used to move a file and overwrite (remove) the target if it already exists to avoid errors.
+            </summary>
+            <param name="sourcePath">Contains the full path to the source file.</param>
+            <param name="targetPath">Contains the full path to the target file.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.SafeMove(System.String,System.String)">
+            <summary>
+            This method does a copy before attempting to remove a previous source file. If the delete fails, the copy will succeed.
+            </summary>
+            <param name="sourcePath">Contains the full path to the source file.</param>
+            <param name="targetPath">Contains the full path to the target file.</param>
+            <returns>Returns a value indicating whether the file move was successful.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.NameContainsGuid(System.String)">
+            <summary>
+            This method is used to determine if a file name contains a GUID.
+            </summary>
+            <param name="fileName">Contains the file name text that will be searched.</param>
+            <returns>Returns a value indicating whether the file name contains a GUID value.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.RemoveGuidFromName(System.String)">
+            <summary>
+            This method is used to remove a GUID from a file name.
+            </summary>
+            <param name="fileName">Contains the file name that does not include an extension and ends with a GUID value.</param>
+            <returns>Returns the value of the file name with the GUID value removed.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.AddGuidToName(System.String,System.Guid)">
+            <summary>
+            This extension method is used to add a specified GUID to the component file name.
+            </summary>
+            <param name="fileName">Contains the file name to modify.</param>
+            <param name="guidValue">Contains the GUID to include in the file name.</param>
+            <returns>Returns a GUID with {fileName}_{guidValue}.extension filename</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.ParseGuidFromName(System.String)">
+            <summary>
+            This method is used to retrieve the GUID from a specified file name.
+            </summary>
+            <param name="fileName">Contains the filename from which a GUID shall be retrieved.</param>
+            <returns>Returns the Guid object of the GUID found within the filename.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Files.StripGuidFromName(System.String)">
+            <summary>
+            This method is used to strip a GUID from a filename in the format text_{GUID}.ext
+            </summary>
+            <param name="fileName">Contains the file name to strip a guid from.</param>
+            <returns>Returns the filename without a GUID value.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Storage.Paths">
+            <summary>
+            This class provides developers with directory path related helper methods.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.CleanPath(System.String,System.Char[])">
+            <summary>
+            This method is used to clean up invalid characters from a path.
+            </summary>
+            <param name="folderPath">Contains the file name string to parse.</param>
+            <param name="invalidCharacters">Contains an array of characters to removed from the specified path.</param>
+            <returns>Returns the file name with the invalid characters removed.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.GetFileName(System.String)">
+            <summary>
+            This method is used to get a file name from either a local path or URL.
+            </summary>
+            <param name="filePathUri">Contains the file path Uri.</param>
+            <returns>Returns the file name within the full Uri path.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.AddPathSeparator(System.String,System.String)">
+            <summary>
+            This method returns the directory path string specified and appends a backward slash to the path if one did not exist.
+            </summary>
+            <param name="fullDirectoryPath">Contains the directory path to ensure ends with a backward slash.</param>
+            <param name="separator">Contains the separator to append to the path. The default is \.</param>
+            <returns>Returns the directory path string specified ending with a backward slash.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.RemovePathSeparator(System.String,System.Char)">
+            <summary>
+            This method returns the directory path string without any ending separator.
+            </summary>
+            <param name="fullDirectoryPath">Contains the directory path to ensure does not end with the separator.</param>
+            <param name="separator">Contains the separator to remove from the path. The default is \.</param>
+            <returns>Returns the directory path string specified with any separator removed.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.ParentDirectory(System.String)">
+            <summary>
+            This method is used to return the parent directory path of a specified path.
+            </summary>
+            <param name="fullDirectoryPath">Contains the directory path to the child sub-folder.</param>
+            <returns>Returns the parent folder path of the specified child sub-folder. If no parent exists, the child sub-folder is returned.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.OverwriteMove(System.String,System.String)">
+            <summary>
+            This method is used to move a folder and overwrite (remove) the target if it already exists to avoid errors.
+            </summary>
+            <param name="sourcePath">Contains the full path to the source folder.</param>
+            <param name="targetPath">Contains the full path to the target folder.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.ValidatePath(System.String)">
+            <summary>
+            This method is used to determine if a directory path specified is valid and well-formed.
+            </summary>
+            <param name="directoryPath">Contains the directory path to validate.</param>
+            <returns>Returns a value indicating whether the path is determined to be well-formed.</returns>
+        </member>
+        <member name="T:Talegen.Common.Core.Threading.ThreadHelper">
+            <summary>
+            This class contains thread task related extensions.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Threading.ThreadHelper.CreateOptions(System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Creates the parallel for each options.
+            </summary>
+            <param name="maxDegreesParallel">The maximum degrees parallel.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <returns>Returns a new ParallelOptions object.</returns>
+        </member>
+        <member name="T:Bastille.Id.Server.Core.IO.OSPlatformHelper">
+            <summary>
+            This class contains extension methods for working with operating systems.
+            </summary>
+        </member>
+        <member name="P:Bastille.Id.Server.Core.IO.OSPlatformHelper.IsWindows">
+            <summary>
+            Gets a value indicating whether this instance is windows.
+            </summary>
+            <value><c>true</c> if this instance is windows; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Bastille.Id.Server.Core.IO.OSPlatformHelper.GetVersion">
+            <summary>
+            Gets the current operating system version.
+            </summary>
+            <returns>Returns a Version object if found. Otherwise returns an empty version.</returns>
+        </member>
+    </members>
+</doc>
