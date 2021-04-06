@@ -1262,22 +1262,24 @@
             <param name="dateFormatter">Contains the globalization formatter for converting a date.</param>
             <returns>Returns the converted or default DateTime value.</returns>
         </member>
-        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.Object,System.Boolean)">
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.Object,System.Boolean,System.Func{System.String,``0})">
             <summary>
             This method is used to convert a string value to an enumerated value of a specified type.
             </summary>
             <typeparam name="T">Contains the enumeration type.</typeparam>
             <param name="value">Contains the string value to convert.</param>
             <param name="ignoreCase"><c>true</c> to perform a case-insensitive search; otherwise <c>false</c>.</param>
+            <param name="converter">Contains an optional function used for specialized string conversion to a given enumeration value.</param>
             <returns>Returns the enumerated value on success.</returns>
         </member>
-        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.String,System.Boolean)">
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.String,System.Boolean,System.Func{System.String,``0})">
             <summary>
             This method is used to convert a string value to an enumerated value of a specified type.
             </summary>
             <typeparam name="T">Contains the enumeration type.</typeparam>
             <param name="value">Contains the string value to convert.</param>
             <param name="ignoreCase"><c>true</c> to perform a case-insensitive search; otherwise <c>false</c>.</param>
+            <param name="converter">Contains an optional function used for specialized string conversion to a given enumeration value.</param>
             <returns>Returns the enumerated value on success.</returns>
         </member>
         <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.ToEnum``1(System.Char,System.Collections.Generic.Dictionary{System.Char,System.String})">

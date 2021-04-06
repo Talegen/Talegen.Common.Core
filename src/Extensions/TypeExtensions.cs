@@ -293,10 +293,11 @@
         /// <typeparam name="T">Contains the enumeration type.</typeparam>
         /// <param name="value">Contains the string value to convert.</param>
         /// <param name="ignoreCase"><c>true</c> to perform a case-insensitive search; otherwise <c>false</c>.</param>
+        /// <param name="converter">Contains an optional function used for specialized string conversion to a given enumeration value.</param>
         /// <returns>Returns the enumerated value on success.</returns>
-        public static T ToEnum<T>(this object value, bool ignoreCase = true)
+        public static T ToEnum<T>(this object value, bool ignoreCase = true, Func<string, T> converter = null)
         {
-            return value.ConvertToString().ToEnum<T>(ignoreCase);
+            return value.ConvertToString().ToEnum<T>(ignoreCase, converter);
         }
 
         /// <summary>
@@ -305,10 +306,22 @@
         /// <typeparam name="T">Contains the enumeration type.</typeparam>
         /// <param name="value">Contains the string value to convert.</param>
         /// <param name="ignoreCase"><c>true</c> to perform a case-insensitive search; otherwise <c>false</c>.</param>
+        /// <param name="converter">Contains an optional function used for specialized string conversion to a given enumeration value.</param>
         /// <returns>Returns the enumerated value on success.</returns>
-        public static T ToEnum<T>(this string value, bool ignoreCase = true)
+        public static T ToEnum<T>(this string value, bool ignoreCase = true, Func<string, T> converter = null)
         {
-            return (T)Enum.Parse(typeof(T), value, ignoreCase);
+            T result;
+
+            if (converter == null)
+            {
+                result = (T)Enum.Parse(typeof(T), value, ignoreCase);
+            }
+            else
+            {
+                result = converter.Invoke(value);
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -421,6 +434,11 @@
                             if (valueAttribute != null)
                             {
                                 result = valueAttribute.Value;
+                            }
+                            else
+                            {
+                                // fail out to just serializing the name.
+                                result = enumerationValue.ToString();
                             }
                         }
                     }
