@@ -11,12 +11,12 @@
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Talegen/Talegen.Common.Core</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Added a new Slugify string extension</PackageReleaseNotes>
+    <PackageReleaseNotes>Added support for System.Runtime.Serialization.EnumMemberAttribute to ToDescription&lt;T&gt; extension method, allowing the call to convert an enum to a string value of the EnumMember value.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
-    <Version>1.0.3.0</Version>
-    <AssemblyVersion>1.0.3.0</AssemblyVersion>
-    <FileVersion>1.0.3.0</FileVersion>
+    <Version>1.0.4</Version>
+    <AssemblyVersion>1.0.4.0</AssemblyVersion>
+    <FileVersion>1.0.4.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">

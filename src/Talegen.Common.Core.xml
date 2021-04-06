@@ -30,6 +30,7 @@
             </summary>
             <param name="localizedDescriptionKey">Contains the resource key name to load into the attribute description property.</param>
             <param name="resourceManager">Contains an optional resource manager</param>
+            <param name="cultureInfo">Contains an optional culture info object for localization.</param>
         </member>
         <member name="P:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.Description">
             <summary>
@@ -63,11 +64,13 @@
         </member>
         <member name="M:Talegen.Common.Core.Errors.ErrorManager.#ctor(Microsoft.Extensions.Logging.ILogger,System.Boolean,Microsoft.Extensions.Logging.LogLevel,System.Resources.ResourceManager,System.Globalization.CultureInfo)">
             <summary>
-            Initializes a new instance of the <see cref="!:IdentityErrorManager" /> class.
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Errors.ErrorManager" /> class.
             </summary>
-            <param name="logger">Contains an instance of the <see cref="!:ILoggerService" /> interface object.</param>
+            <param name="logger">Contains an instance of the <see cref="T:Microsoft.Extensions.Logging.ILogger" /> interface object.</param>
             <param name="enableLogging">Contains a value indicating whether event logging is enabled by default.</param>
-            <param name="minimumEventLogLevel">Contains the minimum <see cref="!:EventLogLevels" /> that will be sent to the event log database.</param>
+            <param name="minimumEventLogLevel">Contains the minimum <see cref="T:Microsoft.Extensions.Logging.LogLevel" /> that will be sent to the event log database.</param>
+            <param name="resourceManager">Contains an optional resource manager for resource retrieval.</param>
+            <param name="cultureInfo">Contains an optional culture info object for retrieving localized resource strings.</param>
         </member>
         <member name="P:Talegen.Common.Core.Errors.ErrorManager.HasCriticalErrors">
             <summary>
@@ -666,7 +669,7 @@
         </member>
         <member name="P:Talegen.Common.Core.Errors.Models.ErrorViewModel`1.Development">
             <summary>
-            Gets or sets a value indicating whether this <see cref="!:ErrorViewModel" /> is development.
+            Gets or sets a value indicating whether this <see cref="T:Talegen.Common.Core.Errors.Models.ErrorViewModel`1" /> hosted application is development.
             </summary>
             <value><c>true</c> if development; otherwise, <c>false</c>.</value>
         </member>
@@ -1435,7 +1438,7 @@
             This extension method is used to add a specified GUID to the file name.
             </summary>
             <param name="fileInfo">Contains the File Info for the file to add a GUID into the file name.</param>
-            <param name="componentGuid">Contains the GUID to add to the file name.</param>
+            <param name="guidValue">Contains the GUID to add to the file name.</param>
             <returns>Returns the a new file name containing the GUID value.</returns>
         </member>
         <member name="M:Talegen.Common.Core.Storage.Files.FindFileErrorLines(System.String,System.String)">

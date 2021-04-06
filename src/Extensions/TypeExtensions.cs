@@ -6,6 +6,7 @@
     using System.Globalization;
     using System.Linq;
     using System.Reflection;
+    using System.Runtime.Serialization;
     using Properties;
     using Talegen.Common.Core.Attributes;
 
@@ -379,7 +380,8 @@
             {
                 // get the first member that has any custom attributes of the type we're looking for
                 var member = memberInfo.FirstOrDefault(mi => mi.CustomAttributes.Any(ca => ca.AttributeType == typeof(DescriptionAttribute) ||
-                                        ca.AttributeType == typeof(LocalizedDescriptionAttribute)));
+                                        ca.AttributeType == typeof(LocalizedDescriptionAttribute) ||
+                                        ca.AttributeType == typeof(EnumMemberAttribute)));
 
                 // if a member was found with either type, get custom attribtes
                 if (member != null)
@@ -411,6 +413,15 @@
                         if (descriptionAttribute != null)
                         {
                             result = descriptionAttribute.Description;
+                        }
+                        else
+                        {
+                            var valueAttribute = member.GetCustomAttributes<EnumMemberAttribute>(false).FirstOrDefault();
+
+                            if (valueAttribute != null)
+                            {
+                                result = valueAttribute.Value;
+                            }
                         }
                     }
                 }
