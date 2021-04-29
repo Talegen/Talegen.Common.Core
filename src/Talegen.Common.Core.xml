@@ -1556,6 +1556,23 @@
             <param name="fileName">Contains the file name to strip a guid from.</param>
             <returns>Returns the filename without a GUID value.</returns>
         </member>
+        <member name="T:Talegen.Common.Core.Storage.OSPlatformHelper">
+            <summary>
+            This class contains extension methods for working with operating systems.
+            </summary>
+        </member>
+        <member name="P:Talegen.Common.Core.Storage.OSPlatformHelper.IsWindows">
+            <summary>
+            Gets a value indicating whether this instance is windows.
+            </summary>
+            <value><c>true</c> if this instance is windows; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.OSPlatformHelper.GetVersion">
+            <summary>
+            Gets the current operating system version.
+            </summary>
+            <returns>Returns a Version object if found. Otherwise returns an empty version.</returns>
+        </member>
         <member name="T:Talegen.Common.Core.Storage.Paths">
             <summary>
             This class provides developers with directory path related helper methods.
@@ -1625,23 +1642,6 @@
             <param name="maxDegreesParallel">The maximum degrees parallel.</param>
             <param name="cancellationToken">Contains an optional cancellation token.</param>
             <returns>Returns a new ParallelOptions object.</returns>
-        </member>
-        <member name="T:Bastille.Id.Server.Core.IO.OSPlatformHelper">
-            <summary>
-            This class contains extension methods for working with operating systems.
-            </summary>
-        </member>
-        <member name="P:Bastille.Id.Server.Core.IO.OSPlatformHelper.IsWindows">
-            <summary>
-            Gets a value indicating whether this instance is windows.
-            </summary>
-            <value><c>true</c> if this instance is windows; otherwise, <c>false</c>.</value>
-        </member>
-        <member name="M:Bastille.Id.Server.Core.IO.OSPlatformHelper.GetVersion">
-            <summary>
-            Gets the current operating system version.
-            </summary>
-            <returns>Returns a Version object if found. Otherwise returns an empty version.</returns>
         </member>
     </members>
 </doc>
