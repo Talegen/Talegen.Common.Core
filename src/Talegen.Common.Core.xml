@@ -1013,12 +1013,31 @@
             <param name="value">Contains the string value to deserialize.</param>
             <returns>Returns an object of the specified type <typeparamref name="T" />.</returns>
         </member>
-        <member name="T:Talegen.Common.Core.Extensions.StringExtensions">
+        <member name="T:Talegen.Common.Core.Extensions.StreamExtensions">
             <summary>
-            This class contains methods to aid in manipulating strings.
+            This class contains extension methods for helping with reading and writing from Stream objects.
             </summary>
         </member>
-        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.WriteString(System.IO.Stream,System.String,System.Text.Encoding)">
+        <member name="M:Talegen.Common.Core.Extensions.StreamExtensions.ReadAllBytes(System.IO.Stream,System.Int32)">
+            <summary>
+            This method is used to read and return a string of data from a specified stream.
+            </summary>
+            <param name="stream">Contains the stream to read string data from.</param>
+            <param name="bufferSize">Contains an optional byte buffer read size.</param>
+            <returns>Returns stream data as a byte array.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StreamExtensions.ReadAllBytesAsync(System.IO.Stream,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            Reads all bytes asynchronous.
+            </summary>
+            <param name="stream">The stream.</param>
+            <param name="bufferSize">Size of the buffer.</param>
+            <param name="cancellationToken">The cancellation token.</param>
+            <returns>Returns stream data as a byte array.</returns>
+            <exception cref="T:System.ArgumentNullException">stream</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">bufferSize</exception>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StreamExtensions.WriteString(System.IO.Stream,System.String,System.Text.Encoding)">
             <summary>
             This extension method is used to write a string to the specified stream/
             </summary>
@@ -1026,7 +1045,17 @@
             <param name="content">Contains the string content to write to the stream.</param>
             <param name="encoder">Contains the optional encoder used to define the string encoding.</param>
         </member>
-        <member name="M:Talegen.Common.Core.Extensions.StringExtensions.ReadString(System.IO.Stream,System.Text.Encoding,System.Boolean,System.Int32)">
+        <member name="M:Talegen.Common.Core.Extensions.StreamExtensions.WriteStringAsync(System.IO.Stream,System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+            <summary>
+            This extension method is used to write a string to the specified stream asynchronously.
+            </summary>
+            <param name="stream">Contains the stream that will be written to.</param>
+            <param name="content">Contains the string content to write to the stream.</param>
+            <param name="encoder">Contains the optional encoder used to define the string encoding.</param>
+            <param name="cancellationToken">Contains an optional cancellation token.</param>
+            <exception cref="T:System.ArgumentNullException">stream</exception>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StreamExtensions.ReadString(System.IO.Stream,System.Text.Encoding,System.Boolean,System.Int32)">
             <summary>
             This method is used to read and return a string of data from a specified stream.
             </summary>
@@ -1035,6 +1064,22 @@
             <param name="detectEncodingFromByteOrderMarks">Contains an optional value indicating that byte order marks should be used to determine encoding.</param>
             <param name="bufferSize">Contains an optional byte buffer read size.</param>
             <returns>Returns stream data as a string.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.StreamExtensions.ReadStringAsync(System.IO.Stream,System.Text.Encoding,System.Boolean,System.Int32)">
+            <summary>
+            This method is used to read and return a string of data from a specified stream.
+            </summary>
+            <param name="stream">Contains the stream to read string data from.</param>
+            <param name="encoder">Contains an optional encoder to use for reading the byte data.</param>
+            <param name="detectEncodingFromByteOrderMarks">Contains an optional value indicating that byte order marks should be used to determine encoding.</param>
+            <param name="bufferSize">Contains an optional byte buffer read size.</param>
+            <returns>Returns stream data as a string.</returns>
+            <exception cref="T:System.ArgumentNullException">stream</exception>
+        </member>
+        <member name="T:Talegen.Common.Core.Extensions.StringExtensions">
+            <summary>
+            This class contains methods to aid in manipulating strings.
+            </summary>
         </member>
         <member name="M:Talegen.Common.Core.Extensions.StringExtensions.ToByteArray(System.String,System.Text.Encoding)">
             <summary>

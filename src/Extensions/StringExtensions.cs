@@ -23,6 +23,8 @@ namespace Talegen.Common.Core.Extensions
     using System.Linq;
     using System.Text;
     using System.Text.RegularExpressions;
+    using System.Threading;
+    using System.Threading.Tasks;
     using Talegen.Common.Core.Properties;
 
     /// <summary>
@@ -30,48 +32,6 @@ namespace Talegen.Common.Core.Extensions
     /// </summary>
     public static class StringExtensions
     {
-        /// <summary>
-        /// This extension method is used to write a string to the specified stream/
-        /// </summary>
-        /// <param name="stream">Contains the stream that will be written to.</param>
-        /// <param name="content">Contains the string content to write to the stream.</param>
-        /// <param name="encoder">Contains the optional encoder used to define the string encoding.</param>
-        public static void WriteString(this Stream stream, string content, Encoding encoder = null)
-        {
-            if (stream == null)
-            {
-                throw new ArgumentNullException(nameof(stream));
-            }
-
-            byte[] outputBytes = content.ToByteArray(encoder);
-            stream.Write(outputBytes, 0, outputBytes.Length);
-        }
-
-        /// <summary>
-        /// This method is used to read and return a string of data from a specified stream.
-        /// </summary>
-        /// <param name="stream">Contains the stream to read string data from.</param>
-        /// <param name="encoder">Contains an optional encoder to use for reading the byte data.</param>
-        /// <param name="detectEncodingFromByteOrderMarks">Contains an optional value indicating that byte order marks should be used to determine encoding.</param>
-        /// <param name="bufferSize">Contains an optional byte buffer read size.</param>
-        /// <returns>Returns stream data as a string.</returns>
-        public static string ReadString(this Stream stream, Encoding encoder = null, bool detectEncodingFromByteOrderMarks = false, int bufferSize = 4096)
-        {
-            string result;
-
-            if (stream == null)
-            {
-                throw new ArgumentNullException(nameof(stream));
-            }
-
-            using (TextReader reader = new StreamReader(stream, encoder ?? Encoding.Default, detectEncodingFromByteOrderMarks, bufferSize))
-            {
-                result = reader.ReadToEnd();
-            }
-
-            return result;
-        }
-
         /// <summary>
         /// This extension method is used to convert a string to an array of bytes using the specified optional encoder.
         /// </summary>
