@@ -51,13 +51,31 @@ namespace Talegen.Common.Core.Attributes
         /// Initializes a new instance of the <see cref="LocalizedDescriptionAttribute" /> class.
         /// </summary>
         /// <param name="localizedDescriptionKey">Contains the resource key name to load into the attribute description property.</param>
+        /// <param name="resourceTypeName">Contains an optional resource manager</param>
+        /// <param name="localeName">Contains an optional culture info object for localization.</param>
+        public LocalizedDescriptionAttribute(string localizedDescriptionKey, string resourceTypeName = null, string localeName = null)
+        {
+            if (string.IsNullOrWhiteSpace(resourceTypeName))
+            {
+                throw new ArgumentException(nameof(resourceTypeName));
+            }
+
+            this.localizedDescriptionKey = localizedDescriptionKey;
+            this.resourceManager = new System.ComponentModel.ComponentResourceManager(Type.GetType(resourceTypeName));
+            this.culture = !string.IsNullOrWhiteSpace(localeName) ? CultureInfo.GetCultureInfo(localeName) : CultureInfo.CurrentCulture;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LocalizedDescriptionAttribute" /> class.
+        /// </summary>
+        /// <param name="localizedDescriptionKey">Contains the resource key name to load into the attribute description property.</param>
         /// <param name="resourceManager">Contains an optional resource manager</param>
         /// <param name="cultureInfo">Contains an optional culture info object for localization.</param>
-        public LocalizedDescriptionAttribute(string localizedDescriptionKey, ResourceManager resourceManager = null, CultureInfo cultureInfo = null)
+        public LocalizedDescriptionAttribute(string localizedDescriptionKey, object resourceManager = null, object cultureInfo = null)
         {
             this.localizedDescriptionKey = localizedDescriptionKey;
-            this.resourceManager = resourceManager ?? Resources.ResourceManager;
-            this.culture = cultureInfo ?? CultureInfo.CurrentCulture;
+            this.resourceManager = resourceManager as ResourceManager ?? Resources.ResourceManager;
+            this.culture = cultureInfo as CultureInfo ?? CultureInfo.CurrentCulture;
         }
 
         /// <summary>

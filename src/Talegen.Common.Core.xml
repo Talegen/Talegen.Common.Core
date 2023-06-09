@@ -24,7 +24,15 @@
             The culture.
             </summary>
         </member>
-        <member name="M:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.#ctor(System.String,System.Resources.ResourceManager,System.Globalization.CultureInfo)">
+        <member name="M:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.#ctor(System.String,System.String,System.String)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute" /> class.
+            </summary>
+            <param name="localizedDescriptionKey">Contains the resource key name to load into the attribute description property.</param>
+            <param name="resourceTypeName">Contains an optional resource manager</param>
+            <param name="localeName">Contains an optional culture info object for localization.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.#ctor(System.String,System.Object,System.Object)">
             <summary>
             Initializes a new instance of the <see cref="T:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute" /> class.
             </summary>

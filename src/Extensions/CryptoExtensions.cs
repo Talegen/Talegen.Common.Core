@@ -87,7 +87,7 @@ namespace Talegen.Common.Core.Extensions
             var characterArray = characterSet.Distinct().ToArray();
             var bytes = new byte[length * 8];
 
-            using (RandomNumberGenerator rng = new RNGCryptoServiceProvider())
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(bytes);
                 result = new char[length];
@@ -127,7 +127,7 @@ namespace Talegen.Common.Core.Extensions
             byte[] randomBytes = new byte[length];
 
             // generate cryptographically secure random bytes
-            using (RandomNumberGenerator rng = new RNGCryptoServiceProvider())
+            using (RandomNumberGenerator rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(randomBytes);
             }
