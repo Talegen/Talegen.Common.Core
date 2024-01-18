@@ -35,7 +35,7 @@ namespace Talegen.Common.Core.Storage
         public static string CleanPath(string folderPath, char[] invalidCharacters = null)
         {
             // Get an array of all invalid characters
-            invalidCharacters = invalidCharacters ?? Path.GetInvalidPathChars();
+            invalidCharacters ??= Path.GetInvalidPathChars();
 
             // Use value.ConvertToString() to account for empty or null values
             return new string(folderPath.ConvertToString().Where(x => !invalidCharacters.Contains(x)).ToArray());
@@ -69,11 +69,16 @@ namespace Talegen.Common.Core.Storage
         /// <param name="fullDirectoryPath">Contains the directory path to ensure ends with a backward slash.</param>
         /// <param name="separator">Contains the separator to append to the path. The default is \.</param>
         /// <returns>Returns the directory path string specified ending with a backward slash.</returns>
-        public static string AddPathSeparator(string fullDirectoryPath, string separator = "\\")
+        public static string AddPathSeparator(string fullDirectoryPath, char separator = default)
         {
             string result = fullDirectoryPath;
 
-            if (!string.IsNullOrWhiteSpace(result) && !result.EndsWith(separator, StringComparison.Ordinal))
+            if (separator == default)
+            {
+                separator = Path.DirectorySeparatorChar;
+            }
+
+            if (!string.IsNullOrWhiteSpace(result) && !result.EndsWith(separator))
             {
                 result += separator;
             }
@@ -87,8 +92,13 @@ namespace Talegen.Common.Core.Storage
         /// <param name="fullDirectoryPath">Contains the directory path to ensure does not end with the separator.</param>
         /// <param name="separator">Contains the separator to remove from the path. The default is \.</param>
         /// <returns>Returns the directory path string specified with any separator removed.</returns>
-        public static string RemovePathSeparator(string fullDirectoryPath, char separator = '\\')
+        public static string RemovePathSeparator(string fullDirectoryPath, char separator = default)
         {
+            if (separator == default)
+            {
+                separator = Path.DirectorySeparatorChar;
+            }
+
             string result = (fullDirectoryPath ?? string.Empty).TrimEnd(new[] { ' ', separator });
             return result.Contains(separator) ? result : fullDirectoryPath;
         }
@@ -143,6 +153,22 @@ namespace Talegen.Common.Core.Storage
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// This method is used to determine if the specified path ends with a directory separator character or alternate separator character.
+        /// </summary>
+        /// <param name="path">Contains the path to evaluate.</param>
+        /// <returns>Returns a value indicating whether the directory path ends in a separator character.</returns>
+        /// <exception cref="ArgumentNullException">This exception is thrown if the path is not specified or is null.</exception>
+        public static bool EndsInDirectorySeparator(string path)
+        {
+            if (string.IsNullOrWhiteSpace(path))
+            {
+                throw new ArgumentNullException(nameof(path));
+            }
+
+            return path.EndsWith(Path.DirectorySeparatorChar) || path.EndsWith(Path.AltDirectorySeparatorChar);
         }
     }
 }

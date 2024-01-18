@@ -1638,7 +1638,7 @@
             <param name="filePathUri">Contains the file path Uri.</param>
             <returns>Returns the file name within the full Uri path.</returns>
         </member>
-        <member name="M:Talegen.Common.Core.Storage.Paths.AddPathSeparator(System.String,System.String)">
+        <member name="M:Talegen.Common.Core.Storage.Paths.AddPathSeparator(System.String,System.Char)">
             <summary>
             This method returns the directory path string specified and appends a backward slash to the path if one did not exist.
             </summary>
@@ -1674,6 +1674,14 @@
             </summary>
             <param name="directoryPath">Contains the directory path to validate.</param>
             <returns>Returns a value indicating whether the path is determined to be well-formed.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Storage.Paths.EndsInDirectorySeparator(System.String)">
+            <summary>
+            This method is used to determine if the specified path ends with a directory separator character or alternate separator character.
+            </summary>
+            <param name="path">Contains the path to evaluate.</param>
+            <returns>Returns a value indicating whether the directory path ends in a separator character.</returns>
+            <exception cref="T:System.ArgumentNullException">This exception is thrown if the path is not specified or is null.</exception>
         </member>
         <member name="T:Talegen.Common.Core.Threading.ThreadHelper">
             <summary>
