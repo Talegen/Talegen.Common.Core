@@ -1399,6 +1399,28 @@
             <param name="value">Contains the value to evaluate.</param>
             <returns>Returns null if the value is zero.</returns>
         </member>
+        <member name="T:Talegen.Common.Core.Extensions.UriBuilderExtensions">
+            <summary>
+            This class contains extension methods for working with URI.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.UriBuilderExtensions.AppendAsQueryString``1(System.Uri,``0)">
+            <summary>
+            This method appends the object as a query string to the target URI object.
+            </summary>
+            <typeparam name="T">Contains the type of the source object.</typeparam>
+            <param name="target">Contains the target URI to append to.</param>
+            <param name="source">Contains the source object.</param>
+            <returns>Returns the target URI with the appended query string.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.UriBuilderExtensions.AsQueryString``1(``0)">
+            <summary>
+            This method is used to convert an object to a query string formatted string.
+            </summary>
+            <typeparam name="T">Contains the type of the source object.</typeparam>
+            <param name="sourceObject">Contains the source object to convert.</param>
+            <returns>Returns the converted query string.</returns>
+        </member>
         <member name="T:Talegen.Common.Core.Extensions.Utf8StringWriter">
             <summary>
             This class is used to override String Writer class.

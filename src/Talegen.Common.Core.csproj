@@ -11,12 +11,12 @@
     <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Talegen/Talegen.Common.Core</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <PackageReleaseNotes>Updated Paths extension class to support EndsInDirectorySeparator which is missing in NET standard 2.1 Path extensions.</PackageReleaseNotes>
+    <PackageReleaseNotes>Added new extension methods for appending query string to URI.</PackageReleaseNotes>
     <NeutralLanguage>en</NeutralLanguage>
     <ApplicationIcon>Assets\logo.ico</ApplicationIcon>
-    <Version>1.0.12</Version>
-    <AssemblyVersion>1.0.12.0</AssemblyVersion>
-    <FileVersion>1.0.12.0</FileVersion>
+    <Version>1.0.13</Version>
+    <AssemblyVersion>1.0.13.0</AssemblyVersion>
+    <FileVersion>1.0.13.0</FileVersion>
     <Company>TalegenInc</Company>
   </PropertyGroup>
 
