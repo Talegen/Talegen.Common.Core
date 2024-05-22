@@ -24,13 +24,20 @@
             The culture.
             </summary>
         </member>
-        <member name="M:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.#ctor(System.String,System.Object,System.Object)">
+        <member name="F:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.returnKeyIfNotFound">
+            <summary>
+            Gets a value indicating whether to return the key if not found.
+            </summary>
+        </member>
+        <member name="M:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.#ctor(System.String,System.Type,System.String,System.String,System.Boolean)">
             <summary>
             Initializes a new instance of the <see cref="T:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute" /> class.
             </summary>
             <param name="localizedDescriptionKey">Contains the resource key name to load into the attribute description property.</param>
-            <param name="resourceManager">Contains an optional resource manager</param>
+            <param name="resourceManagerByType">Contains an optional resource manager by type.</param>
+            <param name="resourceManagerAssemblyName">Contains an optional resource manager assembly name.</param>
             <param name="cultureInfo">Contains an optional culture info object for localization.</param>
+            <param name="returnKeyIfNotFound">Contains a value indicating whether to return the key if not found.</param>
         </member>
         <member name="P:Talegen.Common.Core.Attributes.LocalizedDescriptionAttribute.Description">
             <summary>

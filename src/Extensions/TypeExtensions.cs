@@ -412,7 +412,7 @@ namespace Talegen.Common.Core.Extensions
                                         ca.AttributeType == typeof(LocalizedDescriptionAttribute) ||
                                         ca.AttributeType == typeof(EnumMemberAttribute)));
 
-                // if a member was found with either type, get custom attribtes
+                // if a member was found with either type, get custom attributes
                 if (member != null)
                 {
                     var localizedDescriptionAttribute = member.GetCustomAttributes<LocalizedDescriptionAttribute>(false).FirstOrDefault();
@@ -428,7 +428,7 @@ namespace Talegen.Common.Core.Extensions
                             // use the override culture for this instance
                             Resources.Culture = resourceCulture;
                         }
-
+                        
                         // retrieve the resource stored description from the attribute.
                         result = localizedDescriptionAttribute.Description;
 

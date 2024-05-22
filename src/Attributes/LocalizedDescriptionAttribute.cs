@@ -19,6 +19,7 @@ namespace Talegen.Common.Core.Attributes
     using System;
     using System.ComponentModel;
     using System.Globalization;
+    using System.Reflection;
     using System.Resources;
     using Properties;
 
@@ -45,19 +46,29 @@ namespace Talegen.Common.Core.Attributes
         /// </summary>
         private readonly CultureInfo culture;
 
+        /// <summary>
+        /// Gets a value indicating whether to return the key if not found.
+        /// </summary>
+        private readonly bool returnKeyIfNotFound = true;
         #endregion
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LocalizedDescriptionAttribute" /> class.
         /// </summary>
         /// <param name="localizedDescriptionKey">Contains the resource key name to load into the attribute description property.</param>
-        /// <param name="resourceManager">Contains an optional resource manager</param>
+        /// <param name="resourceManagerByType">Contains an optional resource manager by type.</param>
+        /// <param name="resourceManagerAssemblyName">Contains an optional resource manager assembly name.</param>
         /// <param name="cultureInfo">Contains an optional culture info object for localization.</param>
-        public LocalizedDescriptionAttribute(string localizedDescriptionKey, object resourceManager = null, object cultureInfo = null)
+        /// <param name="returnKeyIfNotFound">Contains a value indicating whether to return the key if not found.</param>
+        public LocalizedDescriptionAttribute(string localizedDescriptionKey, Type resourceManagerByType = null, string resourceManagerAssemblyName = null, string cultureInfo = null, bool returnKeyIfNotFound = true)
         {
+            this.returnKeyIfNotFound = returnKeyIfNotFound;
             this.localizedDescriptionKey = localizedDescriptionKey;
-            this.resourceManager = resourceManager as ResourceManager ?? Resources.ResourceManager;
-            this.culture = cultureInfo as CultureInfo ?? CultureInfo.CurrentCulture;
+            this.resourceManager =
+                resourceManagerByType != null ? new ResourceManager(resourceManagerByType) :
+                (!string.IsNullOrWhiteSpace(resourceManagerAssemblyName) ? new ResourceManager(resourceManagerAssemblyName, Assembly.GetExecutingAssembly()) : Resources.ResourceManager);
+            this.culture = !string.IsNullOrWhiteSpace(cultureInfo) ? CultureInfo.GetCultureInfo(cultureInfo) : CultureInfo.CurrentCulture;
+            this.returnKeyIfNotFound = returnKeyIfNotFound;
         }
 
         /// <summary>
@@ -69,7 +80,16 @@ namespace Talegen.Common.Core.Attributes
             {
                 if (!string.IsNullOrEmpty(this.localizedDescriptionKey))
                 {
-                    this.DescriptionValue = this.resourceManager.GetString(this.localizedDescriptionKey, this.culture) ?? this.localizedDescriptionKey;
+                    var result = this.resourceManager.GetString(this.localizedDescriptionKey, this.culture);
+
+                    if (returnKeyIfNotFound && result == null)
+                    {
+                        this.DescriptionValue = this.localizedDescriptionKey;
+                    }
+                    else
+                    {
+                        this.DescriptionValue = result;
+                    }
                 }
 
                 return this.DescriptionValue;
