@@ -17,13 +17,11 @@
 namespace Talegen.Common.Core.Errors
 {
     using System;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-
+    
     /// <summary>
     /// Contains an enumerated list of error message types.
     /// </summary>
-    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum ErrorType
     {
         /// <summary>
@@ -50,7 +48,7 @@ namespace Talegen.Common.Core.Errors
     /// <summary>
     /// Contains an enumerated list of error message types.
     /// </summary>
-    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum ErrorCategory
     {
         /// <summary>

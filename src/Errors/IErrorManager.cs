@@ -18,13 +18,11 @@ namespace Talegen.Common.Core.Errors
 {
     using System;
     using System.Collections.Generic;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-
+    
     /// <summary>
     /// Contains an enumerated list of event types.
     /// </summary>
-    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum EventType
     {
         /// <summary>

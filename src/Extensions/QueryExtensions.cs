@@ -20,13 +20,11 @@ namespace Talegen.Common.Core.Extensions
     using System.Linq;
     using System.Linq.Expressions;
     using System.Reflection;
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Converters;
-
+    
     /// <summary>
     /// Contains an enumerated list of sort directions for a query.
     /// </summary>
-    [JsonConverter(typeof(StringEnumConverter))]
+    
     public enum SortDirection
     {
         /// <summary>
