@@ -178,6 +178,40 @@
             <param name="category">Contains the error message category.</param>
             <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
         </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.WarningStatusCodeFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode,System.Object[])">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.WarningStatusCode(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode)">
+            <summary>
+            This method is used to generate a warning error with a suggested error code of 500 Internal Server Error.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalStatusCode(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode)">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.ErrorManager.CriticalStatusCodeFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error with a suggested error code of 500 Internal Server Error to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
         <member name="M:Talegen.Common.Core.Errors.ErrorManager.Fatal(System.Exception,Talegen.Common.Core.Errors.ErrorCategory)">
             <summary>
             This method is used to generate and add a fatal error message to the messages list.
@@ -339,6 +373,11 @@
             Gets or sets a suggested return error code to the client.
             </summary>
         </member>
+        <member name="P:Talegen.Common.Core.Errors.ErrorMessage.ReasonCode">
+            <summary>
+            Gets or sets an optional reason code.
+            </summary>
+        </member>
         <member name="P:Talegen.Common.Core.Errors.ErrorMessage.EventDate">
             <summary>
             Gets or sets the date time when the error occurred.
@@ -471,6 +510,40 @@
             </summary>
             <param name="message">Contains the message and any format related token values for inserting parameter values.</param>
             <param name="category">Contains the error message category.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.WarningStatusCodeFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode,System.Object[])">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+            <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.WarningStatusCode(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode)">
+            <summary>
+            This method is used to generate a warning error with a suggested error code of 500 Internal Server Error.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalStatusCode(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode)">
+            <summary>
+            This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        </member>
+        <member name="M:Talegen.Common.Core.Errors.IErrorManager.CriticalStatusCodeFormat(System.String,Talegen.Common.Core.Errors.ErrorCategory,System.Net.HttpStatusCode,System.Object[])">
+            <summary>
+            This method is used to generate and add a critical error with a suggested error code of 500 Internal Server Error to the messages list with a formatted message.
+            </summary>
+            <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+            <param name="category">Contains the error message category.</param>
+            <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
             <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
         </member>
         <member name="M:Talegen.Common.Core.Errors.IErrorManager.Fatal(System.Exception,Talegen.Common.Core.Errors.ErrorCategory)">
@@ -1405,6 +1478,13 @@
             </summary>
             <param name="value">Contains the value to evaluate.</param>
             <returns>Returns null if the value is zero.</returns>
+        </member>
+        <member name="M:Talegen.Common.Core.Extensions.TypeExtensions.EmptyToNull(System.Guid)">
+            <summary>
+            This extension method is used to convert an empty GUID value to null.
+            </summary>
+            <param name="value">Contains the value to evaluate.</param>
+            <returns>Returns null if the Guid is empty, otherwise returns the guid.</returns>
         </member>
         <member name="T:Talegen.Common.Core.Extensions.UriBuilderExtensions">
             <summary>

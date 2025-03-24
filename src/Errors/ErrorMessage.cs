@@ -114,6 +114,11 @@ namespace Talegen.Common.Core.Errors
         public int SuggestedErrorCode { get; set; }
 
         /// <summary>
+        /// Gets or sets an optional reason code.
+        /// </summary>
+        public int? ReasonCode { get; set; }
+
+        /// <summary>
         /// Gets or sets the date time when the error occurred.
         /// </summary>
         public DateTime EventDate { get; set; }

@@ -551,5 +551,15 @@ namespace Talegen.Common.Core.Extensions
         {
             return value != 0 ? value : (int?)null;
         }
+
+        /// <summary>
+        /// This extension method is used to convert an empty GUID value to null.
+        /// </summary>
+        /// <param name="value">Contains the value to evaluate.</param>
+        /// <returns>Returns null if the Guid is empty, otherwise returns the guid.</returns>
+        public static Guid? EmptyToNull(this Guid value)
+        {
+            return value != Guid.Empty ? value : (Guid?)null;
+        }
     }
 }

@@ -214,6 +214,60 @@ namespace Talegen.Common.Core.Errors
             this.messages.Add(error);
         }
 
+        /// <summary>
+        /// This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        /// <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        public void WarningStatusCodeFormat(string message, ErrorCategory category, HttpStatusCode statusCode, params object[] parameters)
+        {
+            var error = this.CreateErrorMessage(string.Format(CultureInfo.InvariantCulture, this.resourceManager.GetString(message, this.culture) ?? message, parameters), ErrorType.Warning, category);
+            error.SuggestedErrorCode = (int)statusCode;
+            this.messages.Add(error);
+        }
+
+        /// <summary>
+        /// This method is used to generate a warning error with a suggested error code of 500 Internal Server Error.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        public void WarningStatusCode(string message, ErrorCategory category, HttpStatusCode statusCode)
+        {
+            var error = this.CreateErrorMessage(this.resourceManager.GetString(message, this.culture) ?? message, ErrorType.Warning, category);
+            error.SuggestedErrorCode = (int)statusCode;
+            this.messages.Add(error);
+        }
+
+        /// <summary>
+        /// This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        public void CriticalStatusCode(string message, ErrorCategory category, HttpStatusCode statusCode)
+        {
+            var error = this.CreateErrorMessage(this.resourceManager.GetString(message, this.culture) ?? message, ErrorType.Critical, category);
+            error.SuggestedErrorCode = (int)statusCode;
+            this.messages.Add(error);
+        }
+
+        /// <summary>
+        /// This method is used to generate and add a critical error with a suggested error code of 500 Internal Server Error to the messages list with a formatted message.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        /// <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        public void CriticalStatusCodeFormat(string message, ErrorCategory category, HttpStatusCode statusCode, params object[] parameters)
+        {
+            var error = this.CreateErrorMessage(string.Format(CultureInfo.InvariantCulture, this.resourceManager.GetString(message, this.culture) ?? message, parameters), ErrorType.Critical, category);
+            error.SuggestedErrorCode = (int)statusCode;
+            this.messages.Add(error);
+        }
+
         // None, Critical, Error, Warning, Information, Debug, Trace
 
         /// <summary>

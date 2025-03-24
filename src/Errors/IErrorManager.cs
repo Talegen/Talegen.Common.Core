@@ -18,11 +18,14 @@ namespace Talegen.Common.Core.Errors
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Net;
+
+
+
     /// <summary>
     /// Contains an enumerated list of event types.
     /// </summary>
-    
+
     public enum EventType
     {
         /// <summary>
@@ -149,6 +152,43 @@ namespace Talegen.Common.Core.Errors
         /// <param name="category">Contains the error message category.</param>
         /// <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
         void CriticalForbiddenFormat(string message, ErrorCategory category, params object[] parameters);
+
+
+        /// <summary>
+        /// This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        /// <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        void WarningStatusCodeFormat(string message, ErrorCategory category, HttpStatusCode statusCode, params object[] parameters);
+        
+        /// <summary>
+        /// This method is used to generate a warning error with a suggested error code of 500 Internal Server Error.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        void WarningStatusCode(string message, ErrorCategory category, HttpStatusCode statusCode);
+        
+
+        /// <summary>
+        /// This method is used to generate a critical error with a suggested error code of 500 Internal Server Error.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        void CriticalStatusCode(string message, ErrorCategory category, HttpStatusCode statusCode);
+        
+
+        /// <summary>
+        /// This method is used to generate and add a critical error with a suggested error code of 500 Internal Server Error to the messages list with a formatted message.
+        /// </summary>
+        /// <param name="message">Contains the resource key that will be used to look up the resource message value.</param>
+        /// <param name="category">Contains the error message category.</param>
+        /// <param name="statusCode">Contains the HTTP status code to suggest to the client.</param>
+        /// <param name="parameters">Contains one or more parameter values to insert into the formatted message.</param>
+        void CriticalStatusCodeFormat(string message, ErrorCategory category, HttpStatusCode statusCode, params object[] parameters);
 
         /// <summary>
         /// This method is used to generate and add a fatal error message to the messages list.
